@@ -6,6 +6,7 @@ require_once("vendor/autoload.php");
 //declarando quais namespace usaremos
 use \Slim\Slim;
 use \Hcode\Page;
+use \Hcode\PageAdmin;
 
 //criando as ROTAS da aplicação
 $app = new Slim();
@@ -20,6 +21,15 @@ $app->get('/', function() {
     $page ->setTpl("index");
     
 });
+
+$app->get('/admin', function() {
+
+    $page = new PageAdmin();
+    
+    $page ->setTpl("index");
+    
+});
+
 
 //depois de tudo "carregado" ele executa
 $app->run();
