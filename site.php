@@ -1,7 +1,8 @@
 <?php
 
-use Hcode\Model\Product;
+use Hcode\Model\Cart;
 use Hcode\Model\Category;
+use Hcode\Model\Product;
 use Hcode\Page;
 
 //quando for chamado a pasta raiz será executado todo este bloco do $app->get('/',
@@ -54,6 +55,11 @@ $app->get("/products/:desurl", function($desurl){
         "product"=> $product->getValues(),
         "categories"=> $product->getCategories()
         
-    ]);
-    
+    ]);    
+});
+
+$app->get("/cart", function(){
+    $cart = Cart::getFromSession();
+    $page = new Page();
+    $page->setTpl("cart");
 });
