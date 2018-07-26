@@ -1,6 +1,6 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>    <div class="slider-area">
         	<!-- Slider -->
-			<div class="block-slider block-slider4">
+		<!--	<div class="block-slider block-slider4">
 				<ul class="" id="bxslider-home4">
 					<li>
 						<img src="/res/site/img/h4-slide.png" alt="Slide">
@@ -40,7 +40,7 @@
 						</div>
 					</li>
 				</ul>
-			</div>
+			</div> -->
 			<!-- ./Slider -->
     </div> <!-- End slider area -->
     
@@ -91,7 +91,7 @@
                                 <div class="product-f-image">
                                     <img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Comprar</a>
+                                        <a href="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Comprar</a>
                                         <a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="view-details-link"><i class="fa fa-link"></i> Ver Detalhes</a>
                                     </div>
                                 </div>
