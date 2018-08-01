@@ -76,7 +76,7 @@ $app->get("/admin/forgot/reset", function() {
 
     $page->setTpl("forgot-reset", array(
         "name" => $user["desperson"],
-        "code" => $_GET["code"],
+        "code" => $_GET["code"]
     ));
 });
 
