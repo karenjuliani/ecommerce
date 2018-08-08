@@ -39,9 +39,9 @@ $app->post("/admin/orders/:idorder/status", function($idorder) {
     //$order->setidstatus();
 
     $order->save($order->getidorder(), $order->getidcart(), $order->getiduser(), (int) $_POST['idstatus'], $order->getidaddress(), $order->getvltotal());
-    
+
     Order::setSuccess("Status atualizado");
-     header("Location: /admin/orders/$idorder/status");
+    header("Location: /admin/orders/$idorder/status");
     exit();
 });
 
@@ -76,10 +76,34 @@ $app->get("/admin/orders/:idorder", function($idorder) {
 $app->get("/admin/orders", function() {
     User::verifyLogin();
 
+    $search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+    $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
+
+    if ($search != '') {
+        $pagination = Order::getPageSearch($search, $page);
+    } else {
+        $pagination = Order::getPage($page);
+    }
+
+    $pages = [];
+    for ($x = 0; $x < $pagination['pages']; $x++) {
+        array_push($pages, [
+            'href' => '/admin/orders?' . http_build_query([
+                'page' => $x + 1,
+                'search' => $search
+            ]),
+            'text' => $x + 1
+        ]);
+    }
+
+
     $page = new PageAdmin;
 
     $page->setTpl("orders", [
-        "orders" => Order::listAll()
+        "orders" => $pagination['data'],
+        "search" => $search,
+        "pages" => $pages
     ]);
 });
 
